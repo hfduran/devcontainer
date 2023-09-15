@@ -77,3 +77,17 @@ To kill the applications and open them on your own way (if you want to), all you
 ```bash
 ./stop-script.sh
 ```
+
+### Usage with VSCode
+
+To connect VSCode, you need to install the extensions **Dev Containers, Docker and Remote Explorer**
+
+#### Attaching VSCode to running Docker
+
+On command pallete, search for
+
+> Dev Containers: Attach to Running Container
+
+and select your container.
+
+The other thing you may do is oppening the **Remote Explorer Menu** and search your container among the list, and click to connect.
