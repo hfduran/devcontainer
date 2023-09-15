@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r flask-mongo/requirements.txt
 
 EXPOSE 5000 8080
 
-CMD ["supervisord", "-c", "./supervisord.conf"]
+CMD chmod +x ./stop-script.sh ./start-script.sh && ./start-script.sh

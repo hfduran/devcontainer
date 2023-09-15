@@ -1,3 +1,4 @@
 .env
-
 supervisord.log
+cats-pid
+api-pid

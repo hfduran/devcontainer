@@ -37,7 +37,7 @@ For this topic, you must be sure to have docker installed and configured on your
 ### Building the Image
 
 ```bash
-docker build -t devcontainer-test .
+docker build -t devcontainer-image .
 ```
 
 This command is going to build the image according to Dockerfile. At the and of it, you must have a "devcontainer-test" image on your docker. You can ensure this by checking with this command:
@@ -49,9 +49,31 @@ docker images
 ### Running docker image
 
 ```bash
-docker run -p 5000:5000 -p 8080:8080 devcontainer-test
+docker run -p 5000:5000 -p 8080:8080 --name my-devcontainer devcontainer-image
 ```
 
-This command must run the image on a container. Once its done, you must see that **supervisord** started two processes, which are the ones we wanted to run on the first place.
+After running the code, if everything went alright, you might notice on your terminal that two process have spawned. These are the two processes that we're gonna develop on our container. At this point, you might close your terminal and the docker container will continue running.
 
-By this time, if you close the terminal, the container will close as well. You can run the container without the terminal with the *-d* run flag.
+For making the container to run on "background" since the start, you can pass the *-d* run flag.
+
+### Attaching to the container
+
+To interact with the container, you can exec a bash in your terminal
+
+```bash
+docker exec -it my-devcontainer /bin/bash
+```
+
+Now you have a terminal inside the container and can interact with it.
+
+### Basic usage
+
+Remember we've spawned two process after the container started? This is due to the *start-script* we ran.
+
+Because the docker must be running a service or else it will stop, the start-script is now on a forever awaiting thread, and the applications we've spawned are on other process.
+
+To kill the applications and open them on your own way (if you want to), all you need to do is run the *stop-script.sh*
+
+```bash
+./stop-script.sh
+```
