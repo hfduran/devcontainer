@@ -30,14 +30,27 @@ git clone-all
 git pull-all
 ```
 
+## Quickstart
+
+The script `quickstart` builds the image, runs a container and connect it to your terminal.
+
+```bash
+sudo chmod +x ./quickstart.sh && ./quickstart.sh
+```
+
+Although it's usefull for the first time setup, **do not** use it everytime you want to start the container!
+Once it's already created use `docker start` for this task.
+
 ## Running the Container
 
-For this topic, you must be sure to have docker installed and configured on your computer.
+This section will guide you through building the image and running the container on your own in case you do not want the quickstart way.
+
+Notice that what is being done here is exactly the same that the script does.
 
 ### Building the Image
 
 ```bash
-docker build -t devcontainer-image .
+docker build -t devcontainer-img .
 ```
 
 This command is going to build the image according to Dockerfile. At the and of it, you must have a "devcontainer-test" image on your docker. You can ensure this by checking with this command:
@@ -49,7 +62,7 @@ docker images
 ### Running docker image
 
 ```bash
-docker run -p 5000:5000 -p 8080:8080 --name my-devcontainer devcontainer-image
+docker run -p 5000:5000 -p 8080:8080 --name devcontainer-test devcontainer-img
 ```
 
 After running the code, if everything went alright, you might notice on your terminal that two process have spawned. These are the two processes that we're gonna develop on our container. At this point, you might close your terminal and the docker container will continue running.
@@ -61,14 +74,14 @@ For making the container to run on "background" since the start, you can pass th
 To interact with the container, you can exec a bash in your terminal
 
 ```bash
-docker exec -it my-devcontainer /bin/bash
+docker exec -it devcontainer-test /bin/bash
 ```
 
 Now you have a terminal inside the container and can interact with it.
 
 ### Basic usage
 
-Remember we've spawned two process after the container started? This is due to the `start-script` runned on the container startup to run the both of our applications.
+The `start-script` is runned on the container startup, and spawns the processes of our applications.
 
 To test these two applications, access on your browser ```localhost:5000``` to see the cats website and ```localhost:8080``` for the api hello world.
 
