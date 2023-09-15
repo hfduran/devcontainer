@@ -68,11 +68,11 @@ Now you have a terminal inside the container and can interact with it.
 
 ### Basic usage
 
-Remember we've spawned two process after the container started? This is due to the *start-script* we ran.
+Remember we've spawned two process after the container started? This is due to the `start-script` runned on the container startup to run the both of our applications.
 
-Because the docker must be running a service or else it will stop, the start-script is now on a forever awaiting thread, and the applications we've spawned are on other process.
+To test these two applications, access on your browser ```localhost:5000``` to see the cats website and ```localhost:8080``` for the api hello world.
 
-To kill the applications and open them on your own way (if you want to), all you need to do is run the *stop-script.sh*
+To kill the applications and open them on your own way (if you want to), all you need to do is run the `stop-script.sh`
 
 ```bash
 ./stop-script.sh
