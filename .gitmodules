@@ -1,0 +1,3 @@
+[submodule "src/flask-mongo"]
+	path = src/flask-mongo
+	url = https://github.com/hfduran/flask-mongo.git
